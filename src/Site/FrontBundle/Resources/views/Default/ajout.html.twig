@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %} 
+
+{% block title %} Edition d'article{% endblock %}
+
+{% block Content %}
+
+<div class="row">
+    <div class="col-md-12" id="content-form-article">
+        <div id="slife-table" class="panel panel-default be-loading panel-border-color panel-border-color-primary">
+            <div class="panel-body" id="content-form-article">
+                {% include "SiteFrontBundle:Default:form.html.twig" %}
+            </div>
+            <div class="be-spinner">
+                <svg width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle fill="none" stroke-width="4" stroke-linecap="round" cx="33" cy="33" r="30" class="circle"></circle>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<form method="post"  {{ form_enctype(form)}} action="{{path('article_save')}}" enctype="multipart/form-data">
+    {{ form_start(form) }}
+    {% if article.id is defined %}
+        <input type="hidden" name="ref" value="{{article.id}}">
+    {% endif %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group form-group-default required">
+                <label>Titre de l'article</label> {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group form-group-default">
+                <label>Description</label> {{ form_errors(form.description) }}
+                {{ form_widget(form.description) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group form-group-default">
+                <label>Catégorie</label> {{ form_errors(form.categorie) }}
+                {{ form_widget(form.categorie) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="file" name="file" id="file" data-multiple-caption="{count} files selected" class="inputfile">
+                        <label for="file" class="btn-default"> <i class="mdi mdi-upload"></i><span>Upload image</span></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-complete btn-block button-save" type="submit">
+            <span class="bold">Enregistrer</span>
+        </button>
+    </div>
+    {{ form_end(form) }}
+</form>

@@ -1,0 +1,155 @@
+<?php
+
+namespace Site\FrontBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="Site\FrontBundle\Repository\ArticleRepository")
+ */
+class Article
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message="Ne doit pas être vide")
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank(message="Ne doit pas être vide")
+     */
+    private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="article")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @Assert\NotBlank(message="Ne doit pas être vide")
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Image")
+     */
+    private $image;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Article
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Article
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Site\FrontBundle\Entity\Categorie $categorie
+     * @return Article
+     */
+    public function setCategorie(\Site\FrontBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Site\FrontBundle\Entity\Categorie 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Site\FrontBundle\Entity\Image $image
+     * @return Article
+     */
+    public function setImage(\Site\FrontBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Site\FrontBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}
